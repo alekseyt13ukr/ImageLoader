@@ -11,4 +11,5 @@ public interface AlbumService {
     Album create(User user, String name);
     boolean delete(List<Album> albums, Album album);
     void addPhotosToAlbum(Album album, Photo... photos);
+    void deletePhotosFromAlbum(Album album, Photo... photos);
 }

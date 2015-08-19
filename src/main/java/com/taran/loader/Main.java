@@ -33,5 +33,6 @@ public class Main {
         albums.add(winterAlbum);
 
         albumService.delete(albums, summerAlbum);
+        albumService.deletePhotosFromAlbum(winterAlbum, photo1, photo2);
     }
 }
