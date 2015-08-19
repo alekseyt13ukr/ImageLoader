@@ -36,4 +36,26 @@ public class AlbumServiceImpl implements AlbumService {
             album.addPhoto(photo);
         }
     }
+
+    @Override
+    public void deletePhotosFromAlbum(Album album, Photo... photos) {
+        if (album.getSize() == 0) {
+            System.out.println("Album is empty");
+            return;
+        }
+
+        if (photos.length == 0) {
+            System.out.println("No photos delete");
+        }
+
+        for (Photo photoForDelete: photos) {
+            for (Photo photo: album.getPhotos()) {
+                if (photo.equals(photoForDelete)) {
+                    album.deletePhoto(photoForDelete);
+                    System.out.println("Deleted");
+                }
+            }
+        }
+    }
+
 }
