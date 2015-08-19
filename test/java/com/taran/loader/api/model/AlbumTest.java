@@ -1,7 +1,8 @@
-package com.taran.loaderApi.model;
+package com.taran.loader.api.model;
 
-import main.java.com.taran.loaderApi.model.Album;
-import main.java.com.taran.loaderApi.model.Photo;
+import main.java.com.taran.loader.api.model.Album;
+import main.java.com.taran.loader.api.model.Photo;
+import main.java.com.taran.loader.api.model.User;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,10 +12,11 @@ public class AlbumTest {
 
     private static final String NAME = "name";
     private Album album;
+    private User user;
 
     @Before
     public void setUp() {
-        album = new Album(NAME);
+        this.album = new Album(NAME, user);
         album.addPhoto(new Photo("test1.jpg"));
         album.addPhoto(new Photo("test2.jpg"));
         album.addPhoto(new Photo("test3.jpg"));
@@ -22,10 +24,24 @@ public class AlbumTest {
 
     @Test
     public void constructorTest() {
-        Album album1 = new Album(NAME);
+        Album album1 = new Album(NAME, user);
         assertEquals(NAME, album1.getName());
         assertNotNull(album1.getPhotos());
         assertEquals(0, album1.getSize());
+    }
+
+    @Test
+    public void addPhotoTest() {
+        int actualCapacity = album.getSize();
+        assertTrue(album.addPhoto("test.jpg"));
+        assertEquals(actualCapacity + 1, album.getSize());
+    }
+
+    @Test
+    public void addPhotoObjectTest() {
+        int actualCapacity = album.getSize();
+        assertTrue(album.addPhoto(new Photo("test5.jpg")));
+        assertEquals(actualCapacity + 1, album.getSize());
     }
 
     @Test
